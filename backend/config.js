@@ -1,4 +1,5 @@
-JWT_SECRET: "your-jwt-secret"
+
+const JWT_SECRET =  "nkop";
 
 export{
     JWT_SECRET
