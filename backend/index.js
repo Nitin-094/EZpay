@@ -3,14 +3,14 @@ import { router as rootRouter } from './routes/index.js';
 import cors from 'cors';
 
 const app = express();
-const PORT = 3000;
+const PORT = 3010;
 
 app.use("/api/v1",rootRouter);
 app.use(cors());
 app.use(express.json());
 
 app.listen(PORT,()=>{
-    console.log(PORT+": callback evoked."); 
+    console.log(PORT+": callback evoked.");
 })
 
 

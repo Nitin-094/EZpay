@@ -1,6 +1,4 @@
 
-const JWT_SECRET =  "nkop";
+const JWT_SECRET = "nkop";
 
-export{
-    JWT_SECRET
-}
+export default {JWT_SECRET};

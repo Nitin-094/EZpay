@@ -2,14 +2,14 @@ import express from 'express';
 import zod from 'zod';
 import jwt from "jsonwebtoken";
 import { User } from "../db/db.js";
-import { JWT_SECRET } from "../config.js";
+import JWT_SECRET  from "../config.js";
+import { authMiddleware } from '../middleware.js';
 
 // backend/routes/user.js
 
 const router = express.Router();
 
-
-
+// sign-up route ----------------------------------------------------------------------
 const signupBody = zod.object({
     username: zod.string().email(),
 	firstName: zod.string(),
@@ -58,6 +58,7 @@ const signinBody = zod.object({
 	password: zod.string()
 })
 
+// sign-in route----------------------------------------------------------------------
 router.post("/signin", async (req, res) => {
     const { success } = signinBody.safeParse(req.body)
     if (!success) {
@@ -88,6 +89,62 @@ router.post("/signin", async (req, res) => {
     })
 })
 
+// update user info route ----------------------------------------------------------------------
+
+// Method: PUT
+// Route: /api/v1/user
+
+const updateBody = zod.object({
+	password: zod.string().optional(),
+    firstName: zod.string().optional(),
+    lastName: zod.string().optional(),
+})
+
+router.put("/", authMiddleware, async (req, res) => {
+    const { success } = updateBody.safeParse(req.body)
+    if (!success) {
+        res.status(411).json({
+            message: "Error while updating information"
+        })
+    }
+
+		await User.updateOne({ _id: req.userId }, req.body);
+	
+    res.json({
+        message: "Updated successfully"
+    })
+})
+// search route ----------------------------------------------------------------------
+/*
+Method: GET
+Route: /api/v1/user/bulk
+Query Parameter: ?filter=harkirat
+ */
+
+router.get("/bulk", async (req, res) => {
+    const filter = req.query.filter || "";
+
+    const users = await User.find({
+        $or: [{
+            firstName: {
+                "$regex": filter
+            }
+        }, {
+            lastName: {
+                "$regex": filter
+            }
+        }]
+    })
+
+    res.json({
+        user: users.map(user => ({
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            _id: user._id
+        }))
+    })
+})
 
 export{router as userRouter};
 
