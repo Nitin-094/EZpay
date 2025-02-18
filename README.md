@@ -1,6 +1,16 @@
-# Secure Money Transfer App (MERN Stack)
+# Secure Money Transfer App (MERN Stack) - EZpay
 
-## Build a basic version of PayTM(Wallet)
+
+graph LR
+A[User]-- localhost/3000 --> B((/api/v1))
+B --> C(Auth)
+C --> D(/signin)
+C --> E(/signup)
+D --> F{/dashboard}
+E --> F
+F --> /sendMoney
+
+
 
 ## Introduction
 
