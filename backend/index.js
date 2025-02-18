@@ -1,28 +1,25 @@
-import express from 'express';
-import { router as rootRouter } from './routes/index.js';
-import cors from 'cors';
-
+const express = require("express");
+const cors = require("cors")
 const app = express();
-const PORT = 3010;
+require('dotenv').config();
+const mainRouter = require("./routes/index")
 
-app.use("/api/v1",rootRouter);
 app.use(cors());
 app.use(express.json());
 
-app.listen(PORT,()=>{
-    console.log(PORT+": callback evoked.");
+
+app.use("/api/v1",mainRouter);
+
+
+app.listen(3000,()=>{
+    console.log("Server is running")
 })
 
 
-/*
-npm install --save body-parser
-app.use(bodyparser.json()); //utilizes the body-parser package
-If you are using Express 4.16+ you can now replace that line with:
-app.use(express.json()); //Used to parse JSON bodies
 
-If you also have the following code in your environment:
+// /api/v1/user/signup
+// /api/v1/user/signin
+// /api/v1/user/chnagePassword....
 
-app.use(bodyParser.urlencoded({extended: true}));
-You can replace that with:
-app.use(express.urlencoded()); //Parse URL-encoded bodies
-*/
+// /api/v1/account/transferMoney
+// /api/v1/account/balance

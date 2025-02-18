@@ -1,4 +1,4 @@
 
-const JWT_SECRET = "nkop";
-
-export default {JWT_SECRET};
+module.exports = {
+	JWT_SECRET: "Prabhakar"
+}
