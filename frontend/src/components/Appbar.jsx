@@ -5,7 +5,8 @@ export const Appbar = ({ onClick, name, username }) => {
     return (
         <div className="shadow h-16 flex justify-between items-center bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white">
             <div className="flex items-center h-full ml-4">
-                <span className="text-2xl font-bold ">EZpay </span>
+            <span className="size-8 m-5"> <img src="./public/image.png"/> </span>  
+                <span className="text-2xl font-bold ">EZpay  </span>
             </div>
             <div className="flex items-center">
                 <div className="flex flex-col justify-center h-full mr-4">
