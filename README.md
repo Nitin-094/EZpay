@@ -1,5 +1,6 @@
 # Secure Money Transfer App (MERN Stack) - EZpay
 
+```mermaid
 
 graph LR
 A[User]-- localhost/3000 --> B((/api/v1))
@@ -11,7 +12,7 @@ E --> F
 F --> /sendMoney
 
 
-
+```
 ## Introduction
 
 This project is a secure money transfer application developed using the MERN stack (MongoDB, Express.js, React, and Node.js). It simulates a basic Paytm wallet, allowing users to transfer money, manage their balance, and search/filter users for easy management. The application ensures secure and consistent financial operations by utilizing MongoDB transactions for atomic balance updates.
